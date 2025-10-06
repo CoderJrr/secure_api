@@ -1,0 +1,34 @@
+# docker-compose.yml
+
+version: '3.8'
+
+services:
+  # 1. Servis: Bizim Node.js API'miz
+  api:
+    build: .  # Bu servisin imajını, bu klasördeki Dockerfile'dan oluştur.
+    ports:
+      - "5001:5001" # Bilgisayarımızın 5001 portunu, konteynerin 5001 portuna bağla.
+    env_file:
+      - .env # Bu servisin ortam değişkenlerini .env dosyasından al.
+    environment:
+      DATABASE_URL: "mysql://task_user:task_password@db:3306/task_manager_db" #Bu değişiklikle, docker-compose api konteynerini başlatırken, .env dosyasındaki localhost'lu DATABASE_URL'yi yok sayacak ve onun yerine bizim docker-compose.yml içinde belirttiğimiz host'u db olan bu yeni URL'yi kullanacaktır.
+    depends_on:
+      - db   # Bu servisi başlatmadan önce, 'db' servisinin başlamasını bekle.
+
+  # 2. Servis: MySQL Veritabanımız
+  db:
+    image: mysql:8.0 # Docker Hub'dan resmi MySQL 8.0 imajını kullan.
+    restart: always  # Konteyner bir şekilde durursa, otomatik olarak yeniden başlat.
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD} # Root kullanıcısı için şifre
+      MYSQL_DATABASE: ${MYSQL_DATABASE}         # Oluşturulacak veritabanının adı
+      MYSQL_USER: ${MYSQL_USER}                 # Uygulamamızın kullanacağı kullanıcı adı
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}         # Uygulama kullanıcısının şifresi
+    ports:
+      - "3306:3306" # MySQL portunu dışarı aç (isteğe bağlı, veritabanına dışarıdan bağlanmak için)
+    volumes:
+      - db_data:/var/lib/mysql # Veritabanı verilerini kalıcı hale getir. volumes (hacimler), bir container'ın içinde üretilen verileri, container'ın kendisi silinse veya dursa bile kalıcı olarak saklamaya yarar.
+
+# Verilerin kalıcı saklanması için bir volume tanımı
+volumes:
+  db_data:

@@ -1,0 +1,9 @@
+{
+  "USER_NOT_FOUND": "User not found.",
+  "INVALID_PASSWORD": "Incorrect password.",
+  "USERNAME_TAKEN": "This username is already taken.",
+  "MISSING_TOKEN": "Access denied. No token provided.",
+  "INVALID_TOKEN": "Invalid or expired token.",
+  "INSUFFICIENT_PERMISSIONS": "You do not have permission to perform this action.",
+  "INTERNAL_SERVER_ERROR": "An internal server error occurred. Please try again later."
+}

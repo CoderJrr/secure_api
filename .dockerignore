@@ -1,0 +1,12 @@
+# Bağımlılıklar konteynerin içinde yeniden kurulacağı için bu klasörü kopyalamaya gerek yok.
+node_modules
+
+# Hassas bilgileri içeren .env dosyasını imajın içine koymuyoruz.
+.env
+
+# Docker ile ilgili dosyaları da dışarıda bırakalım.
+Dockerfile
+.dockerignore
+
+# Log dosyaları
+npm-debug.log

@@ -1,0 +1,9 @@
+{
+  "USER_NOT_FOUND": "Kullanıcı bulunamadı.",
+  "INVALID_PASSWORD": "Hatalı şifre.",
+  "USERNAME_TAKEN": "Bu kullanıcı adı zaten alınmış.",
+  "MISSING_TOKEN": "Erişim reddedildi. Token bulunamadı.",
+  "INVALID_TOKEN": "Geçersiz veya süresi dolmuş token.",
+  "INSUFFICIENT_PERMISSIONS": "Bu işlemi yapmak için yetkiniz yok.",
+  "INTERNAL_SERVER_ERROR": "Sunucuda bir hata oluştu. Lütfen daha sonra tekrar deneyin."
+}
